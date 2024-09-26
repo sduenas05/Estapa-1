@@ -1,0 +1,88 @@
+---
+title: "Etapa_1_A00839013"
+author: "Juan Pablo Valdes Cardenas"
+date: "2024-09-19"
+output: word_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Exploracion de base de datos de los años 2019 y 2024
+
+## Datos 
+```{r}
+M19 = read.csv("Datos_molec_2019.csv")
+M24 = read.csv("Datos_molec_2024.csv")
+```
+
+## Diccionarios
+```{r}
+Dicc19 = read.csv("Diccionario_molec_2019.csv")
+Dicc24 = read.csv("Diccionario_molec_2024.csv")
+```
+
+### Año 2019
+```{r}
+str(M19) # muestra la estructura de la base de datos Mp
+names(M19) # muestra la lista de nombres de las variables
+head(M19) # muestra las primeras 6 filas de la base de datos
+## View(M19) # se mostrará una hoja electrónica aparte con los datos
+dim(M19) # cantidad de registros y columnas
+summary(M19) # verificar de manera general si hay datos faltantes
+sum(is.na(M19[ ,2]) | M19[ ,2] == 0) / length(M19[ ,2]) * 100 # porcentaje de datos faltantes en la variable 
+sum(is.na(M19[ ,12]) | M19[ ,12] == 0) / length(M19[ ,2]) * 100
+sum(is.na(M19[ ,17]) | M19[ ,17] == 0) / length(M19[ ,2]) * 100
+sum(is.na(M19[ ,22]) | M19[ ,22] == 0) / length(M19[ ,2]) * 100
+sum(is.na(M19[ ,13]) | M19[ ,13] == 0) / length(M19[ ,2]) * 100
+sum(is.na(M19[ ,35]) | M19[ ,35] == 0) / length(M19[ ,2]) * 100
+```
+
+### Año 2024
+```{r}
+str(M24) 
+names(M24) 
+head(M24) 
+## View(M24) 
+dim(M24) 
+summary(M24)
+sum(is.na(M24[ ,2]) | M24[ ,2] == 0) / length(M19[ ,2]) * 100
+sum(is.na(M24[ ,12]) | M24[ ,12] == 0) / length(M19[ ,2]) * 100
+sum(is.na(M24[ ,17]) | M24[ ,17] == 0) / length(M19[ ,2]) * 100
+sum(is.na(M24[ ,22]) | M24[ ,22] == 0) / length(M19[ ,2]) * 100
+sum(is.na(M24[ ,13]) | M24[ ,13] == 0) / length(M19[ ,2]) * 100
+sum(is.na(M24[ ,35]) | M24[ ,35] == 0) / length(M19[ ,2]) * 100
+
+```
+
+#### Dimension de los datos
+```{r}
+cat("Dimensión del dataset del año 2019 = ",dim(M19),"\n")
+cat("Dimensión del dataset del año 2024 = ",dim(M24),"\n")
+```
+
+# Describir las variables
+## 1.⁠ ⁠*Entidad (Variable 2)*: Esta variable nos permite identificar la región geográfica o estado en México al que pertenece cada encuestado, lo cual es fundamental para analizar las diferencias entre regiones.
+
+## 2.⁠ ⁠*Nivel de instrucción (Variable 12)*: El nivel educativo es un factor socioeconómico clave que influye en los hábitos de lectura. Las personas con mayor nivel de instrucción tienden a leer más.
+
+## 3.⁠ ⁠*¿En los últimos doce meses, leyó LIBROS? (Variable 17)*: Esta variable permite medir los hábitos de lectura de libros en la población, un indicador central en el análisis de los hábitos de lectura.
+
+## 4.⁠ ⁠*¿Cuántos libros leyó en los últimos doce meses? (Variable 22)*: Proporciona una medida cuantitativa de los hábitos de lectura, lo que facilita la comparación entre regiones.
+
+## 5. *¿Hasta que año o grado aprobó en la escuela?*:Esta variable proporciona el nivel educativo máximo alcanzado por el encuestado. Es clave para entender cómo el nivel de escolaridad influye en otros aspectos de su vida, como los hábitos de lectura. 
+
+## 6.⁠ ⁠*¿El(los) libro(s) que leyó fue(ron) descargado(s) digitalmente o comprado(s) en formato impreso? (Variable 35)*: Esta variable nos permite analizar el acceso a los libros en diferentes formatos (digital o impreso), lo que puede estar relacionado con factores socioeconómicos, como el acceso a tecnologías o recursos económicos para la compra de libros.
+
+# Dataframe de las variantes del año 2019 y 2024
+```{r}
+M19final=M19[c(2,12,17,22,14,35)]
+MA19final=na.omit(M19final)
+M19final
+
+M24final=M24[c(2,12,17,22,14,35)]
+MA24final=na.omit(M24final)
+M24final
+```
+
